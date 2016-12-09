@@ -1,0 +1,23 @@
+<% if @subreddit.id %>
+<% title = 'Update' %>
+<% submit_text = "Update #{@subreddit.title}" %>
+<% action_url = "/subs/#{@subreddit.id}/" %>
+<% else  %>
+<% title = 'Create New Subreddit' %>
+<% submit_text = "Create Subreddit" %>
+<% action_url = "/subs" %>
+<% end %>
+<h1><%= title %></h1>
+
+<form action= "<%= action_url %>" method="post">
+<% if @subreddit.id  %>
+<input type='hidden' name='_method' value='patch'>
+<% end %>
+<%= auth_token %>
+
+<label for="title">Title</label>
+<input type="text" name="sub[title]" value= '<%= @subreddit.title  %>' id='title'>
+<label for="description">Description</label>
+<textarea name="sub[description]" rows="8" cols="80"> <%= @subreddit.description %>  </textarea>
+<input type="submit" value= '<%= submit_text %>' >
+</form>

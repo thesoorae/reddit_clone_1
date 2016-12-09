@@ -1,0 +1,6 @@
+<h1><%= @subreddit.title %></h1>
+<%= @subreddit.description %>
+<br>
+<%= button_to 'Edit this subreddit', edit_sub_url(@subreddit), method: :get %>
+<%= button_to 'Delete this subreddit', sub_url(@subreddit), method: :delete %>
+<%= button_to 'Make a Post', new_sub_post_url(@subreddit), method: :get %>

@@ -1,0 +1,5 @@
+<ol>
+<% @subs.each do |subreddit| %>
+<li> <%= link_to subreddit.title, sub_url(subreddit) %></li>
+<% end  %>
+</ol> 
