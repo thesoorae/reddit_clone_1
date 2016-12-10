@@ -19,7 +19,14 @@ class Sub < ActiveRecord::Base
   class_name: :User,
   inverse_of: :subs
 
-  has_many :posts
+
+  has_many :post_subs
+
+  has_many :posts,
+  through: :post_subs,
+  source: :post
+
+
 
   validates :moderator, presence: true
 end

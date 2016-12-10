@@ -11,6 +11,12 @@
    <%= button_to "View All Subs", subs_url, method: :get %>
 </div>
 <body>
+  <% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  <%= error %>
+  <% end %>
+  <% end %>
+
   <% if current_user %>
   <b>Hi <%= current_user.username %></b>
   <%= button_to 'Log Out', session_url, method: :delete %>

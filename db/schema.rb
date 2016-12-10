@@ -11,20 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209213511) do
+ActiveRecord::Schema.define(version: 20161210004229) do
+
+  create_table "post_subs", force: :cascade do |t|
+    t.integer  "sub_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "post_subs", ["post_id"], name: "index_post_subs_on_post_id"
+  add_index "post_subs", ["sub_id"], name: "index_post_subs_on_sub_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      null: false
     t.string   "url",        null: false
     t.text     "content"
     t.integer  "author_id",  null: false
-    t.integer  "sub_id",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id"
-  add_index "posts", ["sub_id"], name: "index_posts_on_sub_id"
 
   create_table "subs", force: :cascade do |t|
     t.string   "title",       null: false

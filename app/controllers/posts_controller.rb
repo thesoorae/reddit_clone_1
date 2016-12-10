@@ -6,8 +6,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    # post_params[:sub_ids] << params[:sub_id]
     @post = Post.new(post_params)
-    @post.sub_id = params[:sub_id]
     @post.author_id = current_user.id
     if @post.save
       redirect_to post_url(@post)
@@ -45,10 +45,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    render :show
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :content)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
 
 end
